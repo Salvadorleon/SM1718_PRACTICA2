@@ -1,4 +1,4 @@
-package es.ujaen.git.sm1718_practica2;
+package es.ujaen.git.sm1718_G04_practica2;
 
 /**
  * Created by usuario on 04/10/2017.

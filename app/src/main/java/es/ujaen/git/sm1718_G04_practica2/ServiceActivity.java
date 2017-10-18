@@ -1,9 +1,8 @@
-package es.ujaen.git.sm1718_practica2;
+package es.ujaen.git.sm1718_G04_practica2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ServiceActivity extends AppCompatActivity {
 

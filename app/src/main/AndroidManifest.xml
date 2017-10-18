@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="es.ujaen.git.sm1718_practica2">
+    package="es.ujaen.git.sm1718_G04_practica2">
 
     <application
         android:allowBackup="true"
@@ -8,14 +8,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="es.ujaen.git.sm1718_practica2.MainActivity">
+        <activity android:name="es.ujaen.git.sm1718_G04_practica2.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="es.ujaen.git.sm1718_practica2.ServiceActivity"></activity>
+        <activity android:name="es.ujaen.git.sm1718_G04_practica2.ServiceActivity"></activity>
     </application>
 
 </manifest>

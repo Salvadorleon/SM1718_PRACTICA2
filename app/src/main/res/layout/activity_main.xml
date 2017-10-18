@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.ujaen.git.sm1718_g00_practica1.es.ujaen.git.sm1718_practica2.MainActivity">
+    tools:context="es.ujaen.git.sm1718_G04_practica2.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/fragment3"
-        android:name="es.ujaen.git.sm1718_practica2.LoginFragment"
+        android:name="es.ujaen.git.sm1718_G04_practica2.LoginFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
