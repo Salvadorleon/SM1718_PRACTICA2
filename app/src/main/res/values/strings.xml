@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SM1718_PRACTICA2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_login_title">Práctica 2</string>
+    <string name="fragment_login_description">Servicios Móviles. Grado en Ingeniería Telemática, curso 2017/2018</string>
+    <string name="fragment_login_user">Usuario</string>
+    <string name="fragment_login_pass">Clave</string>
+    <string name="fragment_login_ip">Dirección IP</string>
+    <string name="fragment_login_port">Puerto</string>
+    <string name="fragment_login_button">Connect</string>
+    <string name="service_title">ACTIVIDAD 2</string>
+</resources>

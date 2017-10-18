@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SM1718_G00_PRACTICA1</string>
+    <string name="fragment_login_button">Conectar</string>
+    <string name="fragment_login_description">Servicios Móviles. Grado en Ingeniería Telemática, curso 2017/2018</string>
+</resources>
