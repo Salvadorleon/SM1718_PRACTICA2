@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+import java.net.Socket;
 
 
 /**
@@ -114,6 +114,19 @@ public class LoginFragment extends Fragment {
                 if(param.length>=1)
                     data=param[0];
             //TODO proceso de autenticación
+            try {
+                Socket client = new Socket(InetAddress.getLocalHost(),80); //innetaddres con la ip ue me proporciona el usuario
+                Socket input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                Socket output = new DataOutputStream(client.getOutputStream());
+                Socket output.write("GET / HTTP/1.1\r\nhost:localhost\r\n\r\n".getBytes());
+                while ((line=input.readLine())!=null) {
+                    System.out.println(line);
+                }
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return "OK";
         }
 
