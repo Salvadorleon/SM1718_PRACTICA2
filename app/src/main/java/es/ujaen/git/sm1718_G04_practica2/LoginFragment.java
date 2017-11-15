@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 /**
@@ -115,12 +122,13 @@ public class LoginFragment extends Fragment {
                     data=param[0];
             //TODO proceso de autenticación
             try {
-                Socket client = new Socket(InetAddress.getLocalHost(),80); //innetaddres con la ip ue me proporciona el usuario
-                Socket input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                Socket output = new DataOutputStream(client.getOutputStream());
-                Socket output.write("GET / HTTP/1.1\r\nhost:localhost\r\n\r\n".getBytes());
+                Socket client = new Socket(InetAddress.getByName("www4.ujaen.es"),80); //innetaddres con la ip ue me proporciona el usuario
+                BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                DataOutputStream output = new DataOutputStream(client.getOutputStream());
+                output.write("GET /~jccuevas/ssmm/autentica.php?user=user&pass=12345 HTTP/1.1\r\nhost:www4.ujaen.es\r\n\r\n".getBytes());
+                String line;
                 while ((line=input.readLine())!=null) {
-                    System.out.println(line);
+                    Log.d("recibido",line);
                 }
             } catch (UnknownHostException e) {
                 e.printStackTrace();
