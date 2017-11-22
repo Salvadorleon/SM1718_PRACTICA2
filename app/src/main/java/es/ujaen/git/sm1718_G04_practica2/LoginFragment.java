@@ -117,11 +117,9 @@ public class LoginFragment extends Fragment {
     public class TareaAutentica extends AsyncTask<ConnectionUserData,Integer,String> {
         private ConnectionUserData data;
         public String doInBackground(ConnectionUserData... param){
-            if(param!=null)
-                if(param.length>=1)
-                    data=param[0];
-            //TODO proceso de autenticación
+
             try {
+                data=param[0];
                 Socket client = new Socket(InetAddress.getByName("www4.ujaen.es"),80); //innetaddres con la ip ue me proporciona el usuario
                 BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 DataOutputStream output = new DataOutputStream(client.getOutputStream());
@@ -135,6 +133,10 @@ public class LoginFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(param!=null)
+                if(param.length>=1)
+                    data=param[0];
+            //TODO sessionID y expires
             return "OK";
         }
 
