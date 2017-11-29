@@ -117,26 +117,42 @@ public class LoginFragment extends Fragment {
     public class TareaAutentica extends AsyncTask<ConnectionUserData,Integer,String> {
         private ConnectionUserData data;
         public String doInBackground(ConnectionUserData... param){
+            boolean error=true;
 
             try {
                 data=param[0];
                 Socket client = new Socket(InetAddress.getByName("www4.ujaen.es"),80); //innetaddres con la ip ue me proporciona el usuario
                 BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 DataOutputStream output = new DataOutputStream(client.getOutputStream());
-                output.write("GET /~jccuevas/ssmm/autentica.php?user=user&pass=12345 HTTP/1.1\r\nhost:www4.ujaen.es\r\n\r\n".getBytes());
+                output.write("GET /~jccuevas/ssmm/autentica.php?user="+data.getUser()+"&pass=12345 HTTP/1.1\r\nhost:www4.ujaen.es\r\n\r\n".getBytes());
                 String line;
-                while ((line=input.readLine())!=null) {
-                    Log.d("recibido",line);
+                line = input.readLine();
+                if (line!= null){
+                    if(line.startsWith("HTTP/1.1 200")){
+                        while((line = input.readLine()) != null){
+                            System.out.println(line);
+                            if(line.startsWith("SESSION-ID=")) {
+
+                                String params[]=line.split("&");
+                                if(params.length)
+
+
+                            }
+                        }
+                    }
                 }
+
             } catch (UnknownHostException e) {
+                error=true;
                 e.printStackTrace();
             } catch (IOException e) {
+                error=true;
                 e.printStackTrace();
             }
             if(param!=null)
                 if(param.length>=1)
                     data=param[0];
-            //TODO sessionID y expires
+
             return "OK";
         }
 
