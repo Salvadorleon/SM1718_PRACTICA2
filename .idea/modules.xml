@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SM1718_PRACTICA2.iml" filepath="$PROJECT_DIR$/SM1718_PRACTICA2.iml" />
+      <module fileurl="file://D:\Mis Documentos\Docencia\git\alumnos\SM1718_PRACTICA2_G04\SM1718_PRACTICA2.iml" filepath="D:\Mis Documentos\Docencia\git\alumnos\SM1718_PRACTICA2_G04\SM1718_PRACTICA2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SM1718_PRACTICA2_G04.iml" filepath="$PROJECT_DIR$/.idea/SM1718_PRACTICA2_G04.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\Mis Documentos\Docencia\git\alumnos\SM1718_PRACTICA2_G04\app\app.iml" filepath="D:\Mis Documentos\Docencia\git\alumnos\SM1718_PRACTICA2_G04\app\app.iml" />
     </modules>
   </component>
 </project>

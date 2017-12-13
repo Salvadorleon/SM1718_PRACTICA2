@@ -25,6 +25,16 @@ public class MainActivity extends AppCompatActivity {
         volatil = (TextView) findViewById(R.id.volatil);
         volatil.setText(datosvolatiles);
 
+        //TODO Cargar EXPIRES de preferencias compartidas
+        //Si sigue siendo mayor EXPIRES que la fecha actual hacer conexión
+        boolean sesionOK=false;
+        if(sesionOK){
+            //TODO preparo mi clase ConnectionUserData con lo que tenga guardado en preferencias compartidas
+            ConnectionUserData data = new ConnectionUserData("e","e","e",(short)80);
+            TareaAutentica tarea = new TareaAutentica(this);
+            tarea.execute(data);
+        }
+
     }
 
     public void onIcon(View vista) {

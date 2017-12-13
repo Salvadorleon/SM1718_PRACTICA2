@@ -1,6 +1,7 @@
 package es.ujaen.git.sm1718_G04_practica2;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class LoginFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param ip Parameter 1.
+     * @param ip   Parameter 1.
      * @param port Parameter 2.
      * @return A new instance of fragment LoginFragment.
      */
@@ -99,7 +100,7 @@ public class LoginFragment extends Fragment {
                 );
                 Toast.makeText(getContext(), "Hola " + s_user + " " + s_pass + " " + s_ip + ":" + s_port, Toast.LENGTH_LONG).show();
 
-                TareaAutentica tarea = new TareaAutentica();
+                TareaAutentica tarea = new TareaAutentica(getContext());
                 tarea.execute(data);
 
 //                Intent nueva = new Intent(getActivity(), ServiceActivity.class);
@@ -114,79 +115,5 @@ public class LoginFragment extends Fragment {
         return fragment;
     }
 
-    public class TareaAutentica extends AsyncTask<ConnectionUserData,Integer,String> {
-        private ConnectionUserData data;
-        public String doInBackground(ConnectionUserData... param){
-            boolean error=true;
 
-            try {
-                data=param[0];
-                Socket client = new Socket(InetAddress.getByName("www4.ujaen.es"),80); //innetaddres con la ip ue me proporciona el usuario
-                BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                DataOutputStream output = new DataOutputStream(client.getOutputStream());
-                String cadena = "GET /~jccuevas/ssmm/autentica.php?user=" + data.getUser() + "&pass=" + data.getPass() + "\r\n\r\nHTTP/1.1\r\n";
-                output.write(cadena.getBytes());
-                output.flush();
-                String line=null;
-                line = input.readLine();
-                if (line!= null){
-                    if(line.startsWith("HTTP/1.1 200")){
-                        while((line = input.readLine()) != null){
-                            System.out.println(line);
-                            if(line.startsWith("SESSION-ID=")) {
-
-                                String params[]=line.split("&");
-                                if(params.length == 2){
-                                    String sesionID[]=params[0].split("=");
-                                    String expires[]=params[1].split("=");
-                                    if(sesionID != null && expires != null){
-                                        String SesionIDend = sesionID[1];
-                                        Log.d("SesionID=",SesionIDend);
-                                        String expiresEnd = expires[1];
-                                        Log.d("Expiracion=",expiresEnd);
-                                    }
-                                }
-
-
-                            }
-                        }
-
-                    }
-                }
-
-            } catch (UnknownHostException e) {
-                error=true;
-                e.printStackTrace();
-            } catch (IOException e) {
-                error=true;
-                e.printStackTrace();
-            }
-            if(param!=null)
-                if(param.length>=1)
-                    data=param[0];
-
-            return "OK";
-        }
-
-        /**
-         *
-         * @param result OK si la operación fue correcta y si no otor valor
-         */
-        public void onPostExecute(String result){
-
-            if(result.compareToIgnoreCase("OK")==0) {
-                Intent nueva = new Intent(getActivity(), ServiceActivity.class);
-                nueva.putExtra(ServiceActivity.PARAM_USER, data.getUser());
-                nueva.putExtra("param_pass", data.getPass());
-                nueva.putExtra("param_ip", data.getConnectionIP());
-                nueva.putExtra("param_port", data.getConnectionPort());
-                startActivity(nueva);
-            }else
-            {
-                Toast.makeText(getContext(), "Error autenticando a " +data.getUser(), Toast.LENGTH_LONG).show();
-
-            }
-        }
-
-    }
 }
