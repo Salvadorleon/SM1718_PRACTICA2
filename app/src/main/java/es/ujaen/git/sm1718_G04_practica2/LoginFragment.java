@@ -124,8 +124,10 @@ public class LoginFragment extends Fragment {
                 Socket client = new Socket(InetAddress.getByName("www4.ujaen.es"),80); //innetaddres con la ip ue me proporciona el usuario
                 BufferedReader input = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 DataOutputStream output = new DataOutputStream(client.getOutputStream());
-                output.write("GET /~jccuevas/ssmm/autentica.php?user="+data.getUser()+"&pass=12345 HTTP/1.1\r\nhost:www4.ujaen.es\r\n\r\n".getBytes());
-                String line;
+                String cadena = "GET /~jccuevas/ssmm/autentica.php?user=" + data.getUser() + "&pass=" + data.getPass() + "\r\n\r\nHTTP/1.1\r\n";
+                output.write(cadena.getBytes());
+                output.flush();
+                String line=null;
                 line = input.readLine();
                 if (line!= null){
                     if(line.startsWith("HTTP/1.1 200")){
@@ -134,11 +136,21 @@ public class LoginFragment extends Fragment {
                             if(line.startsWith("SESSION-ID=")) {
 
                                 String params[]=line.split("&");
-                                if(params.length)
+                                if(params.length == 2){
+                                    String sesionID[]=params[0].split("=");
+                                    String expires[]=params[1].split("=");
+                                    if(sesionID != null && expires != null){
+                                        String SesionIDend = sesionID[1];
+                                        Log.d("SesionID=",SesionIDend);
+                                        String expiresEnd = expires[1];
+                                        Log.d("Expiracion=",expiresEnd);
+                                    }
+                                }
 
 
                             }
                         }
+
                     }
                 }
 
